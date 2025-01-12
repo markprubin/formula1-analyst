@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8' ?>
 
 <!-- build 20243.24.1010.1014                               -->
-<workbook original-version='18.1' source-build='2024.3.0 (20243.24.1010.1014)' source-platform='mac' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+<workbook original-version='18.1' source-build='2024.3.0 (20243.24.1010.1014)' source-platform='mac' version='18.1' xml:base='https://localhost' xmlns:user='http://www.tableausoftware.com/xml/user'>
   <document-format-change-manifest>
     <AccessibleZoneTabOrder />
     <AnimationOnByDefault />
@@ -20,8 +20,10 @@
     <_.fcp.VConnDownstreamExtractsWithWarnings.true...VConnDownstreamExtractsWithWarnings />
     <VizInTooltipHideWorksheet />
     <WindowsPersistSimpleIdentifiers />
+    <WorksheetBackgroundTransparency />
     <ZoneBackgroundTransparency />
   </document-format-change-manifest>
+  <repository-location derived-from='https://vizhub/workbooks/Formula1_17366288863460?rev=1.0' id='Formula1_17366288863460' path='/workbooks' revision='1.0' />
   <preferences>
     <preference name='ui.encoding.shelf.height' value='24' />
     <preference name='ui.shelf.height' value='26' />
@@ -31,16 +33,19 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='race_data' name='textscan.1yv69g11qungyl19udn5418moscr'>
-            <connection class='textscan' directory='/Users/markrubin/Development/Data-Analysis/f1analyst/transformed_data' filename='race_data.csv' password='' server='' />
+            <connection class='textscan' directory='/Users/markrubin/Development/Data-Analysis/f1analyst/transformed_data' workgroup-auth-mode='as-is' />
           </named-connection>
           <named-connection caption='constructors' name='textscan.1rm03uk12fg5v71e7zjyy0a6d8sg'>
-            <connection class='textscan' directory='/Users/markrubin/Development/Data-Analysis/f1analyst/f1db_csv' filename='constructors.csv' password='' server='' />
+            <connection class='textscan' directory='/Users/markrubin/Development/Data-Analysis/f1analyst/f1db_csv' workgroup-auth-mode='as-is' />
           </named-connection>
           <named-connection caption='constructor_results' name='textscan.0ely33x0g6a8an1fji00x18mb5o8'>
-            <connection class='textscan' directory='/Users/markrubin/Development/Data-Analysis/f1analyst/f1db_csv' filename='constructor_results.csv' password='' server='' />
+            <connection class='textscan' directory='/Users/markrubin/Development/Data-Analysis/f1analyst/f1db_csv' workgroup-auth-mode='as-is' />
           </named-connection>
           <named-connection caption='constructor_standings' name='textscan.0ks279p1v1kq0x1fywbq70tvflay'>
-            <connection class='textscan' directory='/Users/markrubin/Development/Data-Analysis/f1analyst/f1db_csv' filename='constructor_standings.csv' password='' server='' />
+            <connection class='textscan' directory='/Users/markrubin/Development/Data-Analysis/f1analyst/f1db_csv' workgroup-auth-mode='as-is' />
+          </named-connection>
+          <named-connection caption='driver_data' name='textscan.0ehkisr0xz2zlv1f81ipv1gik19e'>
+            <connection class='textscan' directory='/Users/markrubin/Development/Data-Analysis/formula1-analyst/transformed_data' workgroup-auth-mode='as-is' />
           </named-connection>
         </named-connections>
         <relation type='collection'>
@@ -81,26 +86,26 @@
               <column datatype='string' name='url' ordinal='4' />
             </columns>
           </relation>
-          <relation connection='textscan.0ks279p1v1kq0x1fywbq70tvflay' name='results.csv' table='[results#csv]' type='table'>
+          <relation connection='textscan.0ehkisr0xz2zlv1f81ipv1gik19e' name='result_data.csv' table='[result_data#csv]' type='table'>
             <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
-              <column datatype='integer' name='resultId' ordinal='0' />
-              <column datatype='integer' name='raceId' ordinal='1' />
-              <column datatype='integer' name='driverId' ordinal='2' />
-              <column datatype='integer' name='constructorId' ordinal='3' />
-              <column datatype='integer' name='number' ordinal='4' />
-              <column datatype='integer' name='grid' ordinal='5' />
-              <column datatype='string' name='position' ordinal='6' />
-              <column datatype='string' name='positionText' ordinal='7' />
-              <column datatype='integer' name='positionOrder' ordinal='8' />
-              <column datatype='integer' name='points' ordinal='9' />
-              <column datatype='integer' name='laps' ordinal='10' />
-              <column datatype='string' name='time' ordinal='11' />
-              <column datatype='string' name='milliseconds' ordinal='12' />
-              <column datatype='string' name='fastestLap' ordinal='13' />
-              <column datatype='string' name='rank' ordinal='14' />
-              <column datatype='string' name='fastestLapTime' ordinal='15' />
-              <column datatype='string' name='fastestLapSpeed' ordinal='16' />
-              <column datatype='integer' name='statusId' ordinal='17' />
+              <column datatype='integer' name='raceId' ordinal='0' />
+              <column datatype='integer' name='driverId' ordinal='1' />
+              <column datatype='integer' name='constructorId' ordinal='2' />
+              <column datatype='string' name='positionText' ordinal='3' />
+              <column datatype='integer' name='positionOrder' ordinal='4' />
+              <column datatype='real' name='points' ordinal='5' />
+              <column datatype='string' name='rank' ordinal='6' />
+            </columns>
+          </relation>
+          <relation connection='textscan.0ehkisr0xz2zlv1f81ipv1gik19e' name='driver_data.csv' table='[driver_data#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+              <column datatype='integer' name='driverId' ordinal='0' />
+              <column datatype='string' name='code' ordinal='1' />
+              <column datatype='string' name='forename' ordinal='2' />
+              <column datatype='string' name='surname' ordinal='3' />
+              <column datatype='date' name='dob' ordinal='4' />
+              <column datatype='string' name='nationality' ordinal='5' />
+              <column datatype='string' name='url' ordinal='6' />
             </columns>
           </relation>
         </relation>
@@ -109,43 +114,39 @@
           <map key='[circuit_name]' value='[race_data.csv].[circuit_name]' />
           <map key='[circuit_ref]' value='[race_data.csv].[circuit_ref]' />
           <map key='[city]' value='[race_data.csv].[city]' />
+          <map key='[code]' value='[driver_data.csv].[code]' />
           <map key='[constructorId (constructors.csv)]' value='[constructors.csv].[constructorId]' />
-          <map key='[constructorId (results.csv)]' value='[results.csv].[constructorId]' />
+          <map key='[constructorId (result_data.csv)]' value='[result_data.csv].[constructorId]' />
           <map key='[constructorId]' value='[constructor_results.csv].[constructorId]' />
           <map key='[constructorRef]' value='[constructors.csv].[constructorRef]' />
           <map key='[constructorResultsId]' value='[constructor_results.csv].[constructorResultsId]' />
           <map key='[country]' value='[race_data.csv].[country]' />
           <map key='[date]' value='[race_data.csv].[date]' />
-          <map key='[driverId]' value='[results.csv].[driverId]' />
-          <map key='[fastestLapSpeed]' value='[results.csv].[fastestLapSpeed]' />
-          <map key='[fastestLapTime]' value='[results.csv].[fastestLapTime]' />
-          <map key='[fastestLap]' value='[results.csv].[fastestLap]' />
-          <map key='[grid]' value='[results.csv].[grid]' />
-          <map key='[laps]' value='[results.csv].[laps]' />
+          <map key='[dob]' value='[driver_data.csv].[dob]' />
+          <map key='[driverId (driver_data.csv)]' value='[driver_data.csv].[driverId]' />
+          <map key='[driverId]' value='[result_data.csv].[driverId]' />
+          <map key='[forename]' value='[driver_data.csv].[forename]' />
           <map key='[lat]' value='[race_data.csv].[lat]' />
           <map key='[lon]' value='[race_data.csv].[lon]' />
-          <map key='[milliseconds]' value='[results.csv].[milliseconds]' />
           <map key='[name]' value='[constructors.csv].[name]' />
+          <map key='[nationality (driver_data.csv)]' value='[driver_data.csv].[nationality]' />
           <map key='[nationality]' value='[constructors.csv].[nationality]' />
-          <map key='[number]' value='[results.csv].[number]' />
-          <map key='[points (results.csv)]' value='[results.csv].[points]' />
+          <map key='[points (result_data.csv)]' value='[result_data.csv].[points]' />
           <map key='[points]' value='[constructor_results.csv].[points]' />
-          <map key='[positionOrder]' value='[results.csv].[positionOrder]' />
-          <map key='[positionText]' value='[results.csv].[positionText]' />
-          <map key='[position]' value='[results.csv].[position]' />
-          <map key='[raceId (results.csv)]' value='[results.csv].[raceId]' />
+          <map key='[positionOrder]' value='[result_data.csv].[positionOrder]' />
+          <map key='[positionText]' value='[result_data.csv].[positionText]' />
+          <map key='[raceId (result_data.csv)]' value='[result_data.csv].[raceId]' />
           <map key='[raceId]' value='[constructor_results.csv].[raceId]' />
           <map key='[race_id]' value='[race_data.csv].[race_id]' />
           <map key='[race_name]' value='[race_data.csv].[race_name]' />
-          <map key='[rank]' value='[results.csv].[rank]' />
-          <map key='[resultId]' value='[results.csv].[resultId]' />
+          <map key='[rank]' value='[result_data.csv].[rank]' />
           <map key='[round]' value='[race_data.csv].[round]' />
           <map key='[sprint_date]' value='[race_data.csv].[sprint_date]' />
-          <map key='[statusId]' value='[results.csv].[statusId]' />
           <map key='[status]' value='[constructor_results.csv].[status]' />
-          <map key='[time (results.csv)]' value='[results.csv].[time]' />
+          <map key='[surname]' value='[driver_data.csv].[surname]' />
           <map key='[time]' value='[race_data.csv].[time]' />
           <map key='[url (constructors.csv)]' value='[constructors.csv].[url]' />
+          <map key='[url (driver_data.csv)]' value='[driver_data.csv].[url]' />
           <map key='[url]' value='[race_data.csv].[url]' />
           <map key='[year]' value='[race_data.csv].[year]' />
         </cols>
@@ -201,7 +202,23 @@
           <metadata-record class='capability'>
             <remote-name />
             <remote-type>0</remote-type>
-            <parent-name>[results.csv]</parent-name>
+            <parent-name>[result_data.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[driver_data.csv]</parent-name>
             <remote-alias />
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -552,83 +569,86 @@
             <object-id>[constructors.csv_1E281ADFA78D42DA98CB92264B7D096E]</object-id>
           </metadata-record>
           <metadata-record class='column'>
-            <remote-name>resultId</remote-name>
+            <remote-name>raceId</remote-name>
             <remote-type>20</remote-type>
-            <local-name>[resultId]</local-name>
-            <parent-name>[results.csv]</parent-name>
-            <remote-alias>resultId</remote-alias>
+            <local-name>[raceId (result_data.csv)]</local-name>
+            <parent-name>[result_data.csv]</parent-name>
+            <remote-alias>raceId</remote-alias>
             <ordinal>25</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>raceId</remote-name>
-            <remote-type>20</remote-type>
-            <local-name>[raceId (results.csv)]</local-name>
-            <parent-name>[results.csv]</parent-name>
-            <remote-alias>raceId</remote-alias>
-            <ordinal>26</ordinal>
-            <local-type>integer</local-type>
-            <aggregation>Sum</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
+            <object-id>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</object-id>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>driverId</remote-name>
             <remote-type>20</remote-type>
             <local-name>[driverId]</local-name>
-            <parent-name>[results.csv]</parent-name>
+            <parent-name>[result_data.csv]</parent-name>
             <remote-alias>driverId</remote-alias>
-            <ordinal>27</ordinal>
+            <ordinal>26</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
+            <object-id>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</object-id>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>constructorId</remote-name>
             <remote-type>20</remote-type>
-            <local-name>[constructorId (results.csv)]</local-name>
-            <parent-name>[results.csv]</parent-name>
+            <local-name>[constructorId (result_data.csv)]</local-name>
+            <parent-name>[result_data.csv]</parent-name>
             <remote-alias>constructorId</remote-alias>
-            <ordinal>28</ordinal>
+            <ordinal>27</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
+            <object-id>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</object-id>
           </metadata-record>
           <metadata-record class='column'>
-            <remote-name>number</remote-name>
+            <remote-name>positionText</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[positionText]</local-name>
+            <parent-name>[result_data.csv]</parent-name>
+            <remote-alias>positionText</remote-alias>
+            <ordinal>28</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>positionOrder</remote-name>
             <remote-type>20</remote-type>
-            <local-name>[number]</local-name>
-            <parent-name>[results.csv]</parent-name>
-            <remote-alias>number</remote-alias>
+            <local-name>[positionOrder]</local-name>
+            <parent-name>[result_data.csv]</parent-name>
+            <remote-alias>positionOrder</remote-alias>
             <ordinal>29</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
+            <object-id>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</object-id>
           </metadata-record>
           <metadata-record class='column'>
-            <remote-name>grid</remote-name>
-            <remote-type>20</remote-type>
-            <local-name>[grid]</local-name>
-            <parent-name>[results.csv]</parent-name>
-            <remote-alias>grid</remote-alias>
+            <remote-name>points</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[points (result_data.csv)]</local-name>
+            <parent-name>[result_data.csv]</parent-name>
+            <remote-alias>points</remote-alias>
             <ordinal>30</ordinal>
-            <local-type>integer</local-type>
+            <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
+            <object-id>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</object-id>
           </metadata-record>
           <metadata-record class='column'>
-            <remote-name>position</remote-name>
+            <remote-name>rank</remote-name>
             <remote-type>129</remote-type>
-            <local-name>[position]</local-name>
-            <parent-name>[results.csv]</parent-name>
-            <remote-alias>position</remote-alias>
+            <local-name>[rank]</local-name>
+            <parent-name>[result_data.csv]</parent-name>
+            <remote-alias>rank</remote-alias>
             <ordinal>31</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
@@ -636,80 +656,83 @@
             <width>1073741823</width>
             <contains-null>true</contains-null>
             <collation flag='0' name='LEN_RUS' />
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
+            <object-id>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</object-id>
           </metadata-record>
           <metadata-record class='column'>
-            <remote-name>positionText</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[positionText]</local-name>
-            <parent-name>[results.csv]</parent-name>
-            <remote-alias>positionText</remote-alias>
+            <remote-name>driverId</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[driverId (driver_data.csv)]</local-name>
+            <parent-name>[driver_data.csv]</parent-name>
+            <remote-alias>driverId</remote-alias>
             <ordinal>32</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
-            <collation flag='0' name='LEN_RUS' />
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
+            <object-id>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</object-id>
           </metadata-record>
           <metadata-record class='column'>
-            <remote-name>positionOrder</remote-name>
-            <remote-type>20</remote-type>
-            <local-name>[positionOrder]</local-name>
-            <parent-name>[results.csv]</parent-name>
-            <remote-alias>positionOrder</remote-alias>
+            <remote-name>code</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[code]</local-name>
+            <parent-name>[driver_data.csv]</parent-name>
+            <remote-alias>code</remote-alias>
             <ordinal>33</ordinal>
-            <local-type>integer</local-type>
-            <aggregation>Sum</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>points</remote-name>
-            <remote-type>20</remote-type>
-            <local-name>[points (results.csv)]</local-name>
-            <parent-name>[results.csv]</parent-name>
-            <remote-alias>points</remote-alias>
-            <ordinal>34</ordinal>
-            <local-type>integer</local-type>
-            <aggregation>Sum</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>laps</remote-name>
-            <remote-type>20</remote-type>
-            <local-name>[laps]</local-name>
-            <parent-name>[results.csv]</parent-name>
-            <remote-alias>laps</remote-alias>
-            <ordinal>35</ordinal>
-            <local-type>integer</local-type>
-            <aggregation>Sum</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>time</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[time (results.csv)]</local-name>
-            <parent-name>[results.csv]</parent-name>
-            <remote-alias>time</remote-alias>
-            <ordinal>36</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
             <scale>1</scale>
             <width>1073741823</width>
             <contains-null>true</contains-null>
             <collation flag='0' name='LEN_RUS' />
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
+            <object-id>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</object-id>
           </metadata-record>
           <metadata-record class='column'>
-            <remote-name>milliseconds</remote-name>
+            <remote-name>forename</remote-name>
             <remote-type>129</remote-type>
-            <local-name>[milliseconds]</local-name>
-            <parent-name>[results.csv]</parent-name>
-            <remote-alias>milliseconds</remote-alias>
+            <local-name>[forename]</local-name>
+            <parent-name>[driver_data.csv]</parent-name>
+            <remote-alias>forename</remote-alias>
+            <ordinal>34</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>surname</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[surname]</local-name>
+            <parent-name>[driver_data.csv]</parent-name>
+            <remote-alias>surname</remote-alias>
+            <ordinal>35</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>dob</remote-name>
+            <remote-type>133</remote-type>
+            <local-name>[dob]</local-name>
+            <parent-name>[driver_data.csv]</parent-name>
+            <remote-alias>dob</remote-alias>
+            <ordinal>36</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>nationality</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[nationality (driver_data.csv)]</local-name>
+            <parent-name>[driver_data.csv]</parent-name>
+            <remote-alias>nationality</remote-alias>
             <ordinal>37</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
@@ -717,14 +740,14 @@
             <width>1073741823</width>
             <contains-null>true</contains-null>
             <collation flag='0' name='LEN_RUS' />
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
+            <object-id>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</object-id>
           </metadata-record>
           <metadata-record class='column'>
-            <remote-name>fastestLap</remote-name>
+            <remote-name>url</remote-name>
             <remote-type>129</remote-type>
-            <local-name>[fastestLap]</local-name>
-            <parent-name>[results.csv]</parent-name>
-            <remote-alias>fastestLap</remote-alias>
+            <local-name>[url (driver_data.csv)]</local-name>
+            <parent-name>[driver_data.csv]</parent-name>
+            <remote-alias>url</remote-alias>
             <ordinal>38</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
@@ -732,64 +755,7 @@
             <width>1073741823</width>
             <contains-null>true</contains-null>
             <collation flag='0' name='LEN_RUS' />
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>rank</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[rank]</local-name>
-            <parent-name>[results.csv]</parent-name>
-            <remote-alias>rank</remote-alias>
-            <ordinal>39</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag='0' name='LEN_RUS' />
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>fastestLapTime</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[fastestLapTime]</local-name>
-            <parent-name>[results.csv]</parent-name>
-            <remote-alias>fastestLapTime</remote-alias>
-            <ordinal>40</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag='0' name='LEN_RUS' />
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>fastestLapSpeed</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[fastestLapSpeed]</local-name>
-            <parent-name>[results.csv]</parent-name>
-            <remote-alias>fastestLapSpeed</remote-alias>
-            <ordinal>41</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag='0' name='LEN_RUS' />
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>statusId</remote-name>
-            <remote-type>20</remote-type>
-            <local-name>[statusId]</local-name>
-            <parent-name>[results.csv]</parent-name>
-            <remote-alias>statusId</remote-alias>
-            <ordinal>42</ordinal>
-            <local-type>integer</local-type>
-            <aggregation>Sum</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[results.csv_EC7071C3135E41F8A569C2B3C41DE904]</object-id>
+            <object-id>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</object-id>
           </metadata-record>
         </metadata-records>
       </connection>
@@ -804,54 +770,51 @@
           <table-calc ordering-type='Rows' />
         </calculation>
       </column>
-      <column caption='Constructor Title' datatype='string' name='[Calculation_590041954822828033]' role='measure' type='nominal'>
+      <column caption='Dash Title' datatype='string' name='[Calculation_590041954822828033]' role='measure' type='nominal'>
         <calculation class='tableau' formula='IF COUNTD([race_name]) &gt; 1&#10;THEN &quot;Season Total&quot;&#10;ELSE MAX([race_name])&#10;END' />
       </column>
       <column caption='constructor_results.csv' datatype='table' name='[__tableau_internal_object_id__].[constructor_results.csv_AE019A458262434F8A5BC9128E99B5D0]' role='measure' type='quantitative' />
       <column caption='constructors.csv' datatype='table' name='[__tableau_internal_object_id__].[constructors.csv_1E281ADFA78D42DA98CB92264B7D096E]' role='measure' type='quantitative' />
+      <column caption='driver_data.csv' datatype='table' name='[__tableau_internal_object_id__].[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]' role='measure' type='quantitative' />
       <column caption='race_data.csv' datatype='table' name='[__tableau_internal_object_id__].[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D]' role='measure' type='quantitative' />
-      <column caption='results.csv' datatype='table' name='[__tableau_internal_object_id__].[results.csv_EC7071C3135E41F8A569C2B3C41DE904]' role='measure' type='quantitative' />
+      <column caption='result_data.csv' datatype='table' name='[__tableau_internal_object_id__].[result_data.csv_79AF986BD8204F65965D61CD83534A38]' role='measure' type='quantitative' />
       <column caption='Circuit Id' datatype='integer' name='[circuit_id]' role='dimension' type='ordinal' />
       <column caption='Circuit Name' datatype='string' name='[circuit_name]' role='dimension' type='nominal' />
       <column caption='Circuit Ref' datatype='string' name='[circuit_ref]' role='dimension' type='nominal' />
       <column caption='City' datatype='string' name='[city]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+      <column caption='Code' datatype='string' name='[code]' role='dimension' type='nominal' />
       <column datatype='integer' name='[constructorId (constructors.csv)]' role='dimension' type='ordinal' />
-      <column datatype='integer' name='[constructorId (results.csv)]' role='dimension' type='ordinal' />
+      <column caption='constructorId (result data.csv)' datatype='integer' name='[constructorId (result_data.csv)]' role='dimension' type='ordinal' />
       <column caption='Constructor Id' datatype='integer' name='[constructorId]' role='dimension' type='ordinal' />
       <column caption='Constructor Ref' datatype='string' name='[constructorRef]' role='dimension' type='nominal' />
       <column caption='Constructor Results Id' datatype='integer' name='[constructorResultsId]' role='dimension' type='ordinal' />
       <column caption='Country' datatype='string' name='[country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
       <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+      <column caption='Dob' datatype='date' name='[dob]' role='dimension' type='ordinal' />
+      <column caption='driverId (driver data.csv)' datatype='integer' name='[driverId (driver_data.csv)]' role='dimension' type='ordinal' />
       <column caption='Driver Id' datatype='integer' name='[driverId]' role='dimension' type='ordinal' />
-      <column caption='Fastest Lap Speed' datatype='string' name='[fastestLapSpeed]' role='dimension' type='nominal' />
-      <column caption='Fastest Lap Time' datatype='string' name='[fastestLapTime]' role='dimension' type='nominal' />
-      <column caption='Fastest Lap' datatype='string' name='[fastestLap]' role='dimension' type='nominal' />
-      <column caption='Grid' datatype='integer' name='[grid]' role='measure' type='quantitative' />
-      <column caption='Laps' datatype='integer' name='[laps]' role='measure' type='quantitative' />
+      <column caption='Forename' datatype='string' name='[forename]' role='dimension' type='nominal' />
       <column aggregation='Avg' caption='Lat' datatype='real' name='[lat]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
       <column aggregation='Avg' caption='Lon' datatype='real' name='[lon]' role='measure' semantic-role='[Geographical].[Longitude]' type='quantitative' />
-      <column caption='Milliseconds' datatype='string' name='[milliseconds]' role='dimension' type='nominal' />
       <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+      <column caption='Nationality (Driver Data.Csv)' datatype='string' name='[nationality (driver_data.csv)]' role='dimension' type='nominal' />
       <column caption='Nationality' datatype='string' name='[nationality]' role='dimension' type='nominal' />
-      <column caption='Number' datatype='integer' name='[number]' role='dimension' type='ordinal' />
-      <column caption='Points (Results.Csv)' datatype='integer' name='[points (results.csv)]' role='measure' type='quantitative' />
+      <column caption='Points (Result Data.Csv)' datatype='integer' datatype-customized='true' name='[points (result_data.csv)]' role='measure' type='quantitative' />
       <column caption='Points' datatype='integer' name='[points]' role='measure' type='quantitative' />
       <column caption='Position Order' datatype='integer' name='[positionOrder]' role='measure' type='quantitative' />
       <column caption='Position Text' datatype='string' name='[positionText]' role='dimension' type='nominal' />
-      <column caption='Position' datatype='string' name='[position]' role='dimension' type='nominal' />
-      <column datatype='integer' name='[raceId (results.csv)]' role='dimension' type='ordinal' />
+      <column caption='raceId (result data.csv)' datatype='integer' name='[raceId (result_data.csv)]' role='dimension' type='ordinal' />
       <column caption='Race Id1' datatype='integer' name='[raceId]' role='dimension' type='ordinal' />
       <column caption='Race Id' datatype='integer' name='[race_id]' role='dimension' type='ordinal' />
       <column caption='Race Name' datatype='string' name='[race_name]' role='dimension' type='nominal' />
       <column caption='Rank1' datatype='string' name='[rank]' role='dimension' type='nominal' />
-      <column caption='Result Id' datatype='integer' name='[resultId]' role='dimension' type='ordinal' />
       <column caption='Round' datatype='integer' name='[round]' role='measure' type='quantitative' />
       <column caption='Sprint Date' datatype='string' name='[sprint_date]' role='dimension' type='nominal' />
-      <column caption='Status Id' datatype='integer' name='[statusId]' role='dimension' type='ordinal' />
       <column caption='Status' datatype='string' name='[status]' role='dimension' type='nominal' />
-      <column caption='Time (Results.Csv)' datatype='string' name='[time (results.csv)]' role='dimension' type='nominal' />
+      <column caption='Surname' datatype='string' name='[surname]' role='dimension' type='nominal' />
       <column aggregation='Hour' caption='Time' datatype='datetime' name='[time]' role='dimension' type='ordinal' />
       <column caption='Url (Constructors.Csv)' datatype='string' name='[url (constructors.csv)]' role='dimension' type='nominal' />
+      <column caption='Url (Driver Data.Csv)' datatype='string' name='[url (driver_data.csv)]' role='dimension' type='nominal' />
       <column caption='Url' datatype='string' name='[url]' role='dimension' type='nominal' />
       <column caption='Year' datatype='string' datatype-customized='true' name='[year]' role='dimension' type='nominal' />
       <column-instance column='[city]' derivation='None' name='[none:city:nk]' pivot='key' type='nominal' />
@@ -859,6 +822,10 @@
       <column-instance column='[Calculation_563512938254594049]' derivation='User' name='[usr:Calculation_563512938254594049:nk:1]' pivot='key' type='nominal'>
         <table-calc ordering-field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:name:nk]' ordering-type='Field' />
         <table-calc field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[Calculation_563512938254458880]' ordering-field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:name:nk]' ordering-type='Field' />
+      </column-instance>
+      <column-instance column='[Calculation_563512938254594049]' derivation='User' name='[usr:Calculation_563512938254594049:nk:5]' pivot='key' type='nominal'>
+        <table-calc ordering-type='Columns' />
+        <table-calc field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[Calculation_563512938254458880]' ordering-type='Columns' />
       </column-instance>
       <column-instance column='[Calculation_563512938254594049]' derivation='User' name='[usr:Calculation_563512938254594049:nk]' pivot='key' type='nominal'>
         <table-calc ordering-type='Rows' />
@@ -881,42 +848,62 @@
         </groupfilter>
       </group>
       <drill-paths>
+        <drill-path name='Surname, Forename'>
+          <field>[surname]</field>
+          <field>[forename]</field>
+        </drill-path>
         <drill-path name='country, city'>
           <field>[country]</field>
           <field>[city]</field>
         </drill-path>
       </drill-paths>
-      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='false' object-id='' units='records'>
-        <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='/var/folders/hd/6rk51wgd43d0gt928xvfbcr80000gn/T/tableau-temp/#TableauTemp_0qjrpa71y4rxwd14p7svd12obipl.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='01/11/2025 04:41:38 AM' username='tableau_internal_user'>
+      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' object-id='' units='records'>
+        <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='/var/folders/hd/6rk51wgd43d0gt928xvfbcr80000gn/T/tableau-temp/410327234/Data/tableau-temp/#TableauTemp_1mhx0rh1kc9nbq1gyfnpi1x8pj1w.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='01/11/2025 08:53:24 PM' username=''>
           <relation type='collection'>
             <relation name='race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D' table='[Extract].[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D]' type='table' />
             <relation name='constructor_results.csv_AE019A458262434F8A5BC9128E99B5D0' table='[Extract].[constructor_results.csv_AE019A458262434F8A5BC9128E99B5D0]' type='table' />
             <relation name='constructors.csv_1E281ADFA78D42DA98CB92264B7D096E' table='[Extract].[constructors.csv_1E281ADFA78D42DA98CB92264B7D096E]' type='table' />
+            <relation name='result_data.csv_79AF986BD8204F65965D61CD83534A38' table='[Extract].[result_data.csv_79AF986BD8204F65965D61CD83534A38]' type='table' />
+            <relation name='driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE' table='[Extract].[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]' type='table' />
           </relation>
           <cols>
             <map key='[circuit_id]' value='[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D].[circuit_id]' />
             <map key='[circuit_name]' value='[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D].[circuit_name]' />
             <map key='[circuit_ref]' value='[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D].[circuit_ref]' />
             <map key='[city]' value='[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D].[city]' />
+            <map key='[code]' value='[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE].[code]' />
             <map key='[constructorId (constructors.csv)]' value='[constructors.csv_1E281ADFA78D42DA98CB92264B7D096E].[constructorId]' />
+            <map key='[constructorId (result_data.csv)]' value='[result_data.csv_79AF986BD8204F65965D61CD83534A38].[constructorId]' />
             <map key='[constructorId]' value='[constructor_results.csv_AE019A458262434F8A5BC9128E99B5D0].[constructorId]' />
             <map key='[constructorRef]' value='[constructors.csv_1E281ADFA78D42DA98CB92264B7D096E].[constructorRef]' />
             <map key='[constructorResultsId]' value='[constructor_results.csv_AE019A458262434F8A5BC9128E99B5D0].[constructorResultsId]' />
             <map key='[country]' value='[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D].[country]' />
             <map key='[date]' value='[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D].[date]' />
+            <map key='[dob]' value='[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE].[dob]' />
+            <map key='[driverId (driver_data.csv)]' value='[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE].[driverId]' />
+            <map key='[driverId]' value='[result_data.csv_79AF986BD8204F65965D61CD83534A38].[driverId]' />
+            <map key='[forename]' value='[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE].[forename]' />
             <map key='[lat]' value='[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D].[lat]' />
             <map key='[lon]' value='[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D].[lon]' />
             <map key='[name]' value='[constructors.csv_1E281ADFA78D42DA98CB92264B7D096E].[name]' />
+            <map key='[nationality (driver_data.csv)]' value='[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE].[nationality]' />
             <map key='[nationality]' value='[constructors.csv_1E281ADFA78D42DA98CB92264B7D096E].[nationality]' />
+            <map key='[points (result_data.csv)]' value='[result_data.csv_79AF986BD8204F65965D61CD83534A38].[points]' />
             <map key='[points]' value='[constructor_results.csv_AE019A458262434F8A5BC9128E99B5D0].[points]' />
+            <map key='[positionOrder]' value='[result_data.csv_79AF986BD8204F65965D61CD83534A38].[positionOrder]' />
+            <map key='[positionText]' value='[result_data.csv_79AF986BD8204F65965D61CD83534A38].[positionText]' />
+            <map key='[raceId (result_data.csv)]' value='[result_data.csv_79AF986BD8204F65965D61CD83534A38].[raceId]' />
             <map key='[raceId]' value='[constructor_results.csv_AE019A458262434F8A5BC9128E99B5D0].[raceId]' />
             <map key='[race_id]' value='[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D].[race_id]' />
             <map key='[race_name]' value='[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D].[race_name]' />
+            <map key='[rank]' value='[result_data.csv_79AF986BD8204F65965D61CD83534A38].[rank]' />
             <map key='[round]' value='[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D].[round]' />
             <map key='[sprint_date]' value='[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D].[sprint_date]' />
             <map key='[status]' value='[constructor_results.csv_AE019A458262434F8A5BC9128E99B5D0].[status]' />
+            <map key='[surname]' value='[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE].[surname]' />
             <map key='[time]' value='[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D].[time]' />
             <map key='[url (constructors.csv)]' value='[constructors.csv_1E281ADFA78D42DA98CB92264B7D096E].[url]' />
+            <map key='[url (driver_data.csv)]' value='[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE].[url]' />
             <map key='[url]' value='[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D].[url]' />
             <map key='[year]' value='[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D].[year]' />
           </cols>
@@ -937,16 +924,17 @@
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>year</remote-name>
-              <remote-type>20</remote-type>
+              <remote-type>129</remote-type>
               <local-name>[year]</local-name>
               <parent-name>[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D]</parent-name>
               <remote-alias>year</remote-alias>
               <ordinal>1</ordinal>
               <family>race_data.csv</family>
-              <local-type>integer</local-type>
-              <aggregation>Sum</aggregation>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
               <approx-count>75</approx-count>
               <contains-null>true</contains-null>
+              <collation flag='0' name='binary' />
               <object-id>[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D]</object-id>
             </metadata-record>
             <metadata-record class='column'>
@@ -1283,26 +1271,215 @@
               <collation flag='0' name='LEN_RUS' />
               <object-id>[constructors.csv_1E281ADFA78D42DA98CB92264B7D096E]</object-id>
             </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>raceId</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[raceId (result_data.csv)]</local-name>
+              <parent-name>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</parent-name>
+              <remote-alias>raceId</remote-alias>
+              <ordinal>25</ordinal>
+              <family>result_data.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>2395</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>driverId</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[driverId]</local-name>
+              <parent-name>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</parent-name>
+              <remote-alias>driverId</remote-alias>
+              <ordinal>26</ordinal>
+              <family>result_data.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>922</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>constructorId</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[constructorId (result_data.csv)]</local-name>
+              <parent-name>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</parent-name>
+              <remote-alias>constructorId</remote-alias>
+              <ordinal>27</ordinal>
+              <family>result_data.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>236</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>positionText</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[positionText]</local-name>
+              <parent-name>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</parent-name>
+              <remote-alias>positionText</remote-alias>
+              <ordinal>28</ordinal>
+              <family>result_data.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>34</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>positionOrder</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[positionOrder]</local-name>
+              <parent-name>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</parent-name>
+              <remote-alias>positionOrder</remote-alias>
+              <ordinal>29</ordinal>
+              <family>result_data.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>36</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>points</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[points (result_data.csv)]</local-name>
+              <parent-name>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</parent-name>
+              <remote-alias>points</remote-alias>
+              <ordinal>30</ordinal>
+              <family>result_data.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>25</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>rank</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[rank]</local-name>
+              <parent-name>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</parent-name>
+              <remote-alias>rank</remote-alias>
+              <ordinal>31</ordinal>
+              <family>result_data.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>32</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[result_data.csv_79AF986BD8204F65965D61CD83534A38]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>driverId</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[driverId (driver_data.csv)]</local-name>
+              <parent-name>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</parent-name>
+              <remote-alias>driverId</remote-alias>
+              <ordinal>32</ordinal>
+              <family>driver_data.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>861</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>code</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[code]</local-name>
+              <parent-name>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</parent-name>
+              <remote-alias>code</remote-alias>
+              <ordinal>33</ordinal>
+              <family>driver_data.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>98</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>forename</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[forename]</local-name>
+              <parent-name>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</parent-name>
+              <remote-alias>forename</remote-alias>
+              <ordinal>34</ordinal>
+              <family>driver_data.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>478</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>surname</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[surname]</local-name>
+              <parent-name>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</parent-name>
+              <remote-alias>surname</remote-alias>
+              <ordinal>35</ordinal>
+              <family>driver_data.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>802</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>dob</remote-name>
+              <remote-type>133</remote-type>
+              <local-name>[dob]</local-name>
+              <parent-name>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</parent-name>
+              <remote-alias>dob</remote-alias>
+              <ordinal>36</ordinal>
+              <family>driver_data.csv</family>
+              <local-type>date</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>843</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>nationality</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[nationality (driver_data.csv)]</local-name>
+              <parent-name>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</parent-name>
+              <remote-alias>nationality</remote-alias>
+              <ordinal>37</ordinal>
+              <family>driver_data.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>43</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>url</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[url (driver_data.csv)]</local-name>
+              <parent-name>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</parent-name>
+              <remote-alias>url</remote-alias>
+              <ordinal>38</ordinal>
+              <family>driver_data.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>861</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]</object-id>
+            </metadata-record>
           </metadata-records>
         </connection>
       </extract>
       <layout dim-ordering='alphabetic' measure-ordering='alphabetic' rowDisplayCount='10000' show-structure='true' />
       <style>
         <style-rule element='mark'>
-          <encoding attr='color' field='[usr:Calculation_563512938254594049:nk]' type='palette'>
-            <map to='#70756d'>
-              <bucket>&quot;Other&quot;</bucket>
-            </map>
-            <map to='#c0c0c0'>
-              <bucket>&quot;Silver&quot;</bucket>
-            </map>
-            <map to='#cd7f32'>
-              <bucket>&quot;Bronze&quot;</bucket>
-            </map>
-            <map to='#ffd700'>
-              <bucket>&quot;Gold&quot;</bucket>
-            </map>
-          </encoding>
           <encoding attr='shape' field='[none:city:nk]' palette='Custom Icons' type='shape'>
             <map to='Custom Icons/64px-F1_tire_Pirelli_PZero_Red.svg.png'>
               <bucket>&quot;Budapest&quot;</bucket>
@@ -1353,17 +1530,45 @@
               <bucket>&quot;Suzuka&quot;</bucket>
             </map>
           </encoding>
+          <encoding attr='color' field='[usr:Calculation_563512938254594049:nk:5]' type='palette'>
+            <map to='#9c755f'>
+              <bucket>&quot;Bronze&quot;</bucket>
+            </map>
+            <map to='#dfd6d4'>
+              <bucket>&quot;Silver&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Other&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;Gold&quot;</bucket>
+            </map>
+          </encoding>
           <encoding attr='color' field='[usr:Calculation_563512938254594049:nk:1]' type='palette'>
             <map to='#9c755f'>
               <bucket>&quot;Bronze&quot;</bucket>
             </map>
-            <map to='#bab0ac'>
+            <map to='#dfd6d4'>
               <bucket>&quot;Silver&quot;</bucket>
             </map>
-            <map to='#d97b82'>
+            <map to='#edc948'>
+              <bucket>&quot;Gold&quot;</bucket>
+            </map>
+            <map to='#f2dee1'>
               <bucket>&quot;Other&quot;</bucket>
             </map>
-            <map to='#edc948'>
+          </encoding>
+          <encoding attr='color' field='[usr:Calculation_563512938254594049:nk]' type='palette'>
+            <map to='#9c755f'>
+              <bucket>&quot;Bronze&quot;</bucket>
+            </map>
+            <map to='#dfd6d4'>
+              <bucket>&quot;Silver&quot;</bucket>
+            </map>
+            <map to='#f2dee1'>
+              <bucket>&quot;Other&quot;</bucket>
+            </map>
+            <map to='#ffd700'>
               <bucket>&quot;Gold&quot;</bucket>
             </map>
           </encoding>
@@ -1406,6 +1611,24 @@
               <relation name='constructors.csv_1E281ADFA78D42DA98CB92264B7D096E' table='[Extract].[constructors.csv_1E281ADFA78D42DA98CB92264B7D096E]' type='table' />
             </properties>
           </object>
+          <object caption='driver_data.csv' id='driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE'>
+            <properties context=''>
+              <relation connection='textscan.0ehkisr0xz2zlv1f81ipv1gik19e' name='driver_data.csv' table='[driver_data#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='integer' name='driverId' ordinal='0' />
+                  <column datatype='string' name='code' ordinal='1' />
+                  <column datatype='string' name='forename' ordinal='2' />
+                  <column datatype='string' name='surname' ordinal='3' />
+                  <column datatype='date' name='dob' ordinal='4' />
+                  <column datatype='string' name='nationality' ordinal='5' />
+                  <column datatype='string' name='url' ordinal='6' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE' table='[Extract].[driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE]' type='table' />
+            </properties>
+          </object>
           <object caption='race_data.csv' id='race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D'>
             <properties context=''>
               <relation connection='textscan.1yv69g11qungyl19udn5418moscr' name='race_data.csv' table='[race_data#csv]' type='table'>
@@ -1432,30 +1655,22 @@
               <relation name='race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D' table='[Extract].[race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D]' type='table' />
             </properties>
           </object>
-          <object caption='results.csv' id='results.csv_EC7071C3135E41F8A569C2B3C41DE904'>
+          <object caption='result_data.csv' id='result_data.csv_79AF986BD8204F65965D61CD83534A38'>
             <properties context=''>
-              <relation connection='textscan.0ks279p1v1kq0x1fywbq70tvflay' name='results.csv' table='[results#csv]' type='table'>
+              <relation connection='textscan.0ehkisr0xz2zlv1f81ipv1gik19e' name='result_data.csv' table='[result_data#csv]' type='table'>
                 <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
-                  <column datatype='integer' name='resultId' ordinal='0' />
-                  <column datatype='integer' name='raceId' ordinal='1' />
-                  <column datatype='integer' name='driverId' ordinal='2' />
-                  <column datatype='integer' name='constructorId' ordinal='3' />
-                  <column datatype='integer' name='number' ordinal='4' />
-                  <column datatype='integer' name='grid' ordinal='5' />
-                  <column datatype='string' name='position' ordinal='6' />
-                  <column datatype='string' name='positionText' ordinal='7' />
-                  <column datatype='integer' name='positionOrder' ordinal='8' />
-                  <column datatype='integer' name='points' ordinal='9' />
-                  <column datatype='integer' name='laps' ordinal='10' />
-                  <column datatype='string' name='time' ordinal='11' />
-                  <column datatype='string' name='milliseconds' ordinal='12' />
-                  <column datatype='string' name='fastestLap' ordinal='13' />
-                  <column datatype='string' name='rank' ordinal='14' />
-                  <column datatype='string' name='fastestLapTime' ordinal='15' />
-                  <column datatype='string' name='fastestLapSpeed' ordinal='16' />
-                  <column datatype='integer' name='statusId' ordinal='17' />
+                  <column datatype='integer' name='raceId' ordinal='0' />
+                  <column datatype='integer' name='driverId' ordinal='1' />
+                  <column datatype='integer' name='constructorId' ordinal='2' />
+                  <column datatype='string' name='positionText' ordinal='3' />
+                  <column datatype='integer' name='positionOrder' ordinal='4' />
+                  <column datatype='real' name='points' ordinal='5' />
+                  <column datatype='string' name='rank' ordinal='6' />
                 </columns>
               </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='result_data.csv_79AF986BD8204F65965D61CD83534A38' table='[Extract].[result_data.csv_79AF986BD8204F65965D61CD83534A38]' type='table' />
             </properties>
           </object>
         </objects>
@@ -1478,11 +1693,19 @@
           </relationship>
           <relationship>
             <expression op='='>
-              <expression op='[]' />
-              <expression op='[]' />
+              <expression op='[driverId]' />
+              <expression op='[driverId (driver_data.csv)]' />
+            </expression>
+            <first-end-point object-id='result_data.csv_79AF986BD8204F65965D61CD83534A38' />
+            <second-end-point object-id='driver_data.csv_6BB0D3C084BB4E4D968A5B98E917B2FE' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[race_id]' />
+              <expression op='[raceId (result_data.csv)]' />
             </expression>
             <first-end-point object-id='race_data.csv_E884D2C25CD94FD39B675D192A4CEC2D' />
-            <second-end-point object-id='results.csv_EC7071C3135E41F8A569C2B3C41DE904' />
+            <second-end-point object-id='result_data.csv_79AF986BD8204F65965D61CD83534A38' />
           </relationship>
         </relationships>
       </object-graph>
@@ -1503,28 +1726,28 @@
         <column caption='Year' datatype='string' datatype-customized='true' name='[year]' role='dimension' type='nominal' />
       </datasource-dependencies>
       <filter class='categorical' column='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:race_name:nk]'>
-        <groupfilter function='level-members' level='[none:race_name:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+        <groupfilter function='member' level='[none:race_name:nk]' member='&quot;Chinese Grand Prix&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
       </filter>
       <filter class='categorical' column='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:year:nk]'>
-        <groupfilter function='member' level='[none:year:nk]' member='&quot;2003&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+        <groupfilter function='member' level='[none:year:nk]' member='&quot;2024&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
       </filter>
     </shared-view>
   </shared-views>
   <actions>
     <action caption='Filter 1 (generated)' name='[Action1_8B743CAF6A79434E8EC7D802001E6D6F]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='All Time Team Results' type='sheet' worksheet='Race Map' />
+      <source dashboard='F1 Driver and Team Dashboard' type='sheet' worksheet='Race Map' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='All Time Team Results' />
+        <param name='target' value='F1 Driver and Team Dashboard' />
       </command>
     </action>
     <action caption='Filter 2 (generated)' name='[Action2_A45FB3EBB772463B848DC0B762112739]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='All Time Team Results' type='sheet' worksheet='Constructor Points' />
+      <source dashboard='F1 Driver and Team Dashboard' type='sheet' worksheet='Constructor Points' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='All Time Team Results' />
+        <param name='target' value='F1 Driver and Team Dashboard' />
       </command>
     </action>
   </actions>
@@ -1533,12 +1756,15 @@
       <layout-options>
         <title>
           <formatted-text>
-            <run bold='true' fontalignment='1' fontcolor='#000000' fontname='Tableau Bold'><![CDATA[<[federated.1t8lzp419z68r517wiswl1iiv5e7].[usr:Calculation_590041954822828033:nk]>]]></run>
+            <run fontalignment='1' fontcolor='#000000'>Team Standings</run>
             <run fontalignment='1'>Æ&#10;</run>
-            <run bold='true' fontalignment='1' fontcolor='#000000' fontname='Tableau Bold'><![CDATA[<[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:year:nk]>]]></run>
+            <run fontalignment='1' fontcolor='#000000' fontsize='14'><![CDATA[<[federated.1t8lzp419z68r517wiswl1iiv5e7].[usr:Calculation_590041954822828033:nk]>]]></run>
+            <run fontalignment='1'>Æ&#10;</run>
+            <run fontalignment='1' fontcolor='#000000' fontsize='12'><![CDATA[<[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:year:nk]>]]></run>
           </formatted-text>
         </title>
       </layout-options>
+      <repository-location derived-from='https://vizhub/workbooks/Formula1_17366288863460/ConstructorPoints?rev=' id='110763023' path='/workbooks/Formula1_17366288863460' revision='' />
       <table>
         <view>
           <datasources>
@@ -1555,7 +1781,7 @@
                 <table-calc ordering-type='Rows' />
               </calculation>
             </column>
-            <column caption='Constructor Title' datatype='string' name='[Calculation_590041954822828033]' role='measure' type='nominal'>
+            <column caption='Dash Title' datatype='string' name='[Calculation_590041954822828033]' role='measure' type='nominal'>
               <calculation class='tableau' formula='IF COUNTD([race_name]) &gt; 1&#10;THEN &quot;Season Total&quot;&#10;ELSE MAX([race_name])&#10;END' />
             </column>
             <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
@@ -1572,22 +1798,21 @@
             <column-instance column='[Calculation_590041954822828033]' derivation='User' name='[usr:Calculation_590041954822828033:nk]' pivot='key' type='nominal' />
             <column caption='Year' datatype='string' datatype-customized='true' name='[year]' role='dimension' type='nominal' />
           </datasource-dependencies>
-          <filter class='categorical' column='[federated.1t8lzp419z68r517wiswl1iiv5e7].[Action (Race Name)]'>
-            <groupfilter function='level-members' level='[race_name]' user:ui-action-filter='[Action1_8B743CAF6A79434E8EC7D802001E6D6F]' user:ui-enumeration='all' user:ui-marker='enumerate' />
-          </filter>
           <shelf-sorts>
             <shelf-sort-v2 dimension-to-sort='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:name:nk]' direction='DESC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.1t8lzp419z68r517wiswl1iiv5e7].[sum:points:qk]' shelf='columns' />
           </shelf-sorts>
           <slices>
             <column>[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:year:nk]</column>
             <column>[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:race_name:nk]</column>
-            <column>[federated.1t8lzp419z68r517wiswl1iiv5e7].[Action (Race Name)]</column>
           </slices>
           <aggregation value='true' />
         </view>
         <style>
           <style-rule element='axis'>
             <format attr='display' class='0' field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[sum:points:qk]' scope='rows' value='false' />
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+            <format attr='tick-color' value='#00000000' />
           </style-rule>
           <style-rule element='label'>
             <format attr='font-family' field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:name:nk]' value='Tableau Bold' />
@@ -1596,6 +1821,22 @@
           <style-rule element='worksheet'>
             <format attr='display-field-labels' scope='cols' value='false' />
             <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
           </style-rule>
         </style>
         <panes>
@@ -1631,9 +1872,13 @@
                 <format attr='size' value='1.3403314352035522' />
                 <format attr='mark-labels-cull' value='true' />
                 <format attr='mark-labels-mode' value='all' />
+                <format attr='mark-labels-show' value='true' />
                 <format attr='has-stroke' value='false' />
                 <format attr='mark-transparency' value='255' />
-                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='trendline'>
+                <format attr='stroke-size' value='0' />
+                <format attr='line-visibility' value='off' />
               </style-rule>
             </style>
           </pane>
@@ -1644,22 +1889,141 @@
       <simple-id uuid='{C2B8E0EA-299C-434C-A7B6-E4B11BCCAFB7}' />
     </worksheet>
     <worksheet name='Driver Points'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontalignment='1'>Driver Standings&#10;</run>
+            <run fontalignment='1' fontsize='14'><![CDATA[<[federated.1t8lzp419z68r517wiswl1iiv5e7].[usr:Calculation_590041954822828033:nk]>]]></run>
+            <run fontalignment='1'>Æ&#10;</run>
+            <run fontalignment='1' fontsize='12'><![CDATA[<[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:year:nk]>]]></run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <repository-location derived-from='https://vizhub/workbooks/Formula1_17366288863460/DriverPoints?rev=' id='110763024' path='/workbooks/Formula1_17366288863460' revision='' />
       <table>
         <view>
-          <datasources />
+          <datasources>
+            <datasource caption='race_data.csv (Multiple Connections)' name='federated.1t8lzp419z68r517wiswl1iiv5e7' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1t8lzp419z68r517wiswl1iiv5e7'>
+            <column caption='Rank' datatype='integer' name='[Calculation_563512938254458880]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='RANK_UNIQUE(SUM([points]), &apos;desc&apos;)'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='Bar Color' datatype='string' name='[Calculation_563512938254594049]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='IF [Calculation_563512938254458880] = 1 THEN &quot;Gold&quot;&#10;ELSEIF [Calculation_563512938254458880] = 2 THEN &quot;Silver&quot;&#10;ELSEIF [Calculation_563512938254458880] = 3 THEN &quot;Bronze&quot;&#10;ELSE &quot;Other&quot;&#10;END'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='Dash Title' datatype='string' name='[Calculation_590041954822828033]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='IF COUNTD([race_name]) &gt; 1&#10;THEN &quot;Season Total&quot;&#10;ELSE MAX([race_name])&#10;END' />
+            </column>
+            <column-instance column='[forename]' derivation='Attribute' name='[attr:forename:nk]' pivot='key' type='nominal' />
+            <column-instance column='[surname]' derivation='Attribute' name='[attr:surname:nk]' pivot='key' type='nominal' />
+            <column caption='Forename' datatype='string' name='[forename]' role='dimension' type='nominal' />
+            <column-instance column='[race_name]' derivation='None' name='[none:race_name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[surname]' derivation='None' name='[none:surname:nk]' pivot='key' type='nominal' />
+            <column-instance column='[year]' derivation='None' name='[none:year:nk]' pivot='key' type='nominal' />
+            <column caption='Points (Result Data.Csv)' datatype='integer' datatype-customized='true' name='[points (result_data.csv)]' role='measure' type='quantitative' />
+            <column caption='Points' datatype='integer' name='[points]' role='measure' type='quantitative' />
+            <column caption='Race Name' datatype='string' name='[race_name]' role='dimension' type='nominal' />
+            <column-instance column='[points (result_data.csv)]' derivation='Sum' name='[sum:points (result_data.csv):qk]' pivot='key' type='quantitative' />
+            <column caption='Surname' datatype='string' name='[surname]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_563512938254594049]' derivation='User' name='[usr:Calculation_563512938254594049:nk]' pivot='key' type='nominal'>
+              <table-calc ordering-type='Rows' />
+              <table-calc field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[Calculation_563512938254458880]' ordering-type='Rows' />
+            </column-instance>
+            <column-instance column='[Calculation_590041954822828033]' derivation='User' name='[usr:Calculation_590041954822828033:nk]' pivot='key' type='nominal' />
+            <column caption='Year' datatype='string' datatype-customized='true' name='[year]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <shelf-sorts>
+            <shelf-sort-v2 dimension-to-sort='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:surname:nk]' direction='DESC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.1t8lzp419z68r517wiswl1iiv5e7].[sum:points (result_data.csv):qk]' shelf='columns' />
+          </shelf-sorts>
+          <slices>
+            <column>[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:year:nk]</column>
+            <column>[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:race_name:nk]</column>
+          </slices>
           <aggregation value='true' />
         </view>
-        <style />
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[sum:points (result_data.csv):qk]' scope='rows' value='Points' />
+            <format attr='display' class='0' field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[sum:points (result_data.csv):qk]' scope='rows' value='false' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='tick-color' scope='cols' value='#00000000' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='tick-color' scope='rows' value='#00000000' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-orientation' field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:surname:nk]' value='0' />
+            <format attr='font-weight' field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:surname:nk]' value='normal' />
+            <format attr='font-family' field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:surname:nk]' value='Tableau Bold' />
+            <format attr='text-format' field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[sum:points (result_data.csv):qk]' value='n#,##0;-#,##0' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='line-pattern-only' scope='cols' value='solid' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+        </style>
         <panes>
           <pane selection-relaxation-option='selection-relaxation-allow'>
             <view>
               <breakdown value='auto' />
             </view>
             <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1t8lzp419z68r517wiswl1iiv5e7].[usr:Calculation_563512938254594049:nk]' />
+              <text column='[federated.1t8lzp419z68r517wiswl1iiv5e7].[sum:points (result_data.csv):qk]' />
+              <tooltip column='[federated.1t8lzp419z68r517wiswl1iiv5e7].[attr:surname:nk]' />
+              <tooltip column='[federated.1t8lzp419z68r517wiswl1iiv5e7].[attr:forename:nk]' />
+              <lod column='[federated.1t8lzp419z68r517wiswl1iiv5e7].[usr:Calculation_590041954822828033:nk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[<[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:surname:nk]>, <[federated.1t8lzp419z68r517wiswl1iiv5e7].[attr:forename:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Points </run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='datalabel'>
+                <format attr='color-mode' value='auto' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-mode' value='all' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
           </pane>
         </panes>
-        <rows />
-        <cols />
+        <rows>[federated.1t8lzp419z68r517wiswl1iiv5e7].[sum:points (result_data.csv):qk]</rows>
+        <cols>[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:surname:nk]</cols>
       </table>
       <simple-id uuid='{57D60C06-8C2D-4B46-B880-62741B2F76BD}' />
     </worksheet>
@@ -1672,6 +2036,7 @@
           </formatted-text>
         </title>
       </layout-options>
+      <repository-location derived-from='https://vizhub/workbooks/Formula1_17366288863460/RaceMap?rev=' id='110763020' path='/workbooks/Formula1_17366288863460' revision='' />
       <table>
         <view>
           <datasources>
@@ -1705,10 +2070,6 @@
           <aggregation value='true' />
         </view>
         <style>
-          <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[avg:lon:qk]' field-type='quantitative' max='33145137.268676698' min='-25479492.155707605' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
-            <encoding attr='space' class='0' field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[avg:lat:qk]' field-type='quantitative' max='12359808.593069557' min='-5868458.3049249919' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
-          </style-rule>
           <style-rule element='map-layer'>
             <format attr='enabled' id='b01002_001e' value='false' />
             <format attr='enabled' id='b01002_002e' value='false' />
@@ -1760,16 +2121,16 @@
             </encodings>
             <customized-tooltip>
               <formatted-text>
-                <run bold='true' fontalignment='1'><![CDATA[<[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:race_name:nk]>]]></run>
+                <run bold='true' fontalignment='1' fontsize='12'><![CDATA[<[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:race_name:nk]>]]></run>
                 <run fontalignment='1'>Æ&#10;</run>
-                <run bold='true' fontalignment='1'><![CDATA[<[federated.1t8lzp419z68r517wiswl1iiv5e7].[attr:date:ok]>]]></run>
+                <run bold='true' fontalignment='1' fontsize='8'><![CDATA[<[federated.1t8lzp419z68r517wiswl1iiv5e7].[attr:city:nk]>, <[federated.1t8lzp419z68r517wiswl1iiv5e7].[attr:country:nk]>]]></run>
                 <run fontalignment='1'>Æ&#10;</run>
-                <run bold='true' fontalignment='1'><![CDATA[Circuit:  <[federated.1t8lzp419z68r517wiswl1iiv5e7].[attr:circuit_name:nk]>]]></run>
+                <run bold='true' fontalignment='1' fontsize='8'><![CDATA[<[federated.1t8lzp419z68r517wiswl1iiv5e7].[attr:date:ok]>]]></run>
                 <run fontalignment='1'>Æ&#10;</run>
-                <run bold='true' fontalignment='1'><![CDATA[<[federated.1t8lzp419z68r517wiswl1iiv5e7].[attr:city:nk]>, <[federated.1t8lzp419z68r517wiswl1iiv5e7].[attr:country:nk]>]]></run>
+                <run bold='true' fontalignment='1'><![CDATA[<[federated.1t8lzp419z68r517wiswl1iiv5e7].[attr:circuit_name:nk]>]]></run>
                 <run fontalignment='1'>Æ&#10;</run>
-                <run bold='true' fontalignment='1'><![CDATA[<Sheet name="Top 3 Podium" maxwidth="250" maxheight="250" filter="<All Fields>">]]></run>
-                <run fontalignment='1'>Æ&#10;&#10;</run>
+                <run bold='true' fontalignment='1'><![CDATA[<Sheet name="Top 3 Team Podium" maxwidth="250" maxheight="250" filter="<All Fields>"><Sheet name="Top 3 Driver Podium" maxwidth="250" maxheight="250" filter="<All Fields>">]]></run>
+                <run fontalignment='1'>Æ&#10;&#10;&#10;</run>
               </formatted-text>
             </customized-tooltip>
             <style>
@@ -1788,6 +2149,7 @@
       <simple-id uuid='{D7477013-31EC-4670-8894-BD59502DAB2C}' />
     </worksheet>
     <worksheet name='Team Bubble'>
+      <repository-location derived-from='https://vizhub/workbooks/Formula1_17366288863460/TeamBubble?rev=' id='110763025' path='/workbooks/Formula1_17366288863460' revision='' />
       <table>
         <view>
           <datasources />
@@ -1807,27 +2169,127 @@
       </table>
       <simple-id uuid='{108BC084-60A4-44D9-91D6-7DC964C7822C}' />
     </worksheet>
-    <worksheet name='Top 3 Drivers'>
+    <worksheet name='Top 3 Driver Podium'>
+      <repository-location derived-from='https://vizhub/workbooks/Formula1_17366288863460/Top3DriverPodium?rev=' id='110763022' path='/workbooks/Formula1_17366288863460' revision='' />
       <table>
         <view>
-          <datasources />
+          <datasources>
+            <datasource caption='race_data.csv (Multiple Connections)' name='federated.1t8lzp419z68r517wiswl1iiv5e7' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1t8lzp419z68r517wiswl1iiv5e7'>
+            <column caption='Rank' datatype='integer' name='[Calculation_563512938254458880]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='RANK_UNIQUE(SUM([points]), &apos;desc&apos;)'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='Bar Color' datatype='string' name='[Calculation_563512938254594049]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='IF [Calculation_563512938254458880] = 1 THEN &quot;Gold&quot;&#10;ELSEIF [Calculation_563512938254458880] = 2 THEN &quot;Silver&quot;&#10;ELSEIF [Calculation_563512938254458880] = 3 THEN &quot;Bronze&quot;&#10;ELSE &quot;Other&quot;&#10;END'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column-instance column='[forename]' derivation='Attribute' name='[attr:forename:nk]' pivot='key' type='nominal' />
+            <column-instance column='[surname]' derivation='Attribute' name='[attr:surname:nk]' pivot='key' type='nominal' />
+            <column caption='Forename' datatype='string' name='[forename]' role='dimension' type='nominal' />
+            <column-instance column='[positionText]' derivation='None' name='[none:positionText:nk]' pivot='key' type='nominal' />
+            <column-instance column='[race_name]' derivation='None' name='[none:race_name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[surname]' derivation='None' name='[none:surname:nk]' pivot='key' type='nominal' />
+            <column-instance column='[year]' derivation='None' name='[none:year:nk]' pivot='key' type='nominal' />
+            <column caption='Points (Result Data.Csv)' datatype='integer' datatype-customized='true' name='[points (result_data.csv)]' role='measure' type='quantitative' />
+            <column caption='Points' datatype='integer' name='[points]' role='measure' type='quantitative' />
+            <column caption='Position Text' datatype='string' name='[positionText]' role='dimension' type='nominal' />
+            <column caption='Race Name' datatype='string' name='[race_name]' role='dimension' type='nominal' />
+            <column-instance column='[points (result_data.csv)]' derivation='Sum' name='[sum:points (result_data.csv):qk]' pivot='key' type='quantitative' />
+            <column caption='Surname' datatype='string' name='[surname]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_563512938254594049]' derivation='User' name='[usr:Calculation_563512938254594049:nk:5]' pivot='key' type='nominal'>
+              <table-calc ordering-type='Columns' />
+              <table-calc field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[Calculation_563512938254458880]' ordering-type='Columns' />
+            </column-instance>
+            <column caption='Year' datatype='string' datatype-customized='true' name='[year]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1t8lzp419z68r517wiswl1iiv5e7].[Tooltip (Race Name)]'>
+            <groupfilter function='level-members' level='[race_name]' user:ui-action-filter='[Action - Top 3 Driver Podium]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:positionText:nk]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:positionText:nk]' member='&quot;1&quot;' />
+              <groupfilter function='member' level='[none:positionText:nk]' member='&quot;2&quot;' />
+              <groupfilter function='member' level='[none:positionText:nk]' member='&quot;3&quot;' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:positionText:nk]</column>
+            <column>[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:year:nk]</column>
+            <column>[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:race_name:nk]</column>
+            <column>[federated.1t8lzp419z68r517wiswl1iiv5e7].[Tooltip (Race Name)]</column>
+          </slices>
           <aggregation value='true' />
         </view>
-        <style />
+        <style>
+          <style-rule element='header'>
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+            <format attr='border-width' data-class='subtotal' value='0' />
+            <format attr='border-style' data-class='subtotal' value='none' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-format' field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[sum:points (result_data.csv):qk]' value='*' />
+            <format attr='font-family' field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:surname:nk]' value='Tableau Bold' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+            <format attr='border-width' data-class='subtotal' value='0' />
+            <format attr='border-style' data-class='subtotal' value='none' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+        </style>
         <panes>
           <pane selection-relaxation-option='selection-relaxation-allow'>
             <view>
               <breakdown value='auto' />
             </view>
-            <mark class='Automatic' />
+            <mark class='Circle' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.1t8lzp419z68r517wiswl1iiv5e7].[usr:Calculation_563512938254594049:nk:5]' />
+              <lod column='[federated.1t8lzp419z68r517wiswl1iiv5e7].[sum:points (result_data.csv):qk]' />
+              <tooltip column='[federated.1t8lzp419z68r517wiswl1iiv5e7].[attr:surname:nk]' />
+              <tooltip column='[federated.1t8lzp419z68r517wiswl1iiv5e7].[attr:forename:nk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[<[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:surname:nk]>, <[federated.1t8lzp419z68r517wiswl1iiv5e7].[attr:forename:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Points </run>
+                <run bold='true'><![CDATA[<[federated.1t8lzp419z68r517wiswl1iiv5e7].[sum:points (result_data.csv):qk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='datalabel'>
+                <format attr='color-mode' value='auto' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-mode' value='all' />
+                <format attr='mark-labels-show' value='false' />
+                <format attr='size' value='1.5052486658096313' />
+              </style-rule>
+            </style>
           </pane>
         </panes>
-        <rows />
+        <rows>[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:surname:nk]</rows>
         <cols />
       </table>
-      <simple-id uuid='{026187CD-FA14-439A-9FE8-87CFD4B984DB}' />
+      <simple-id uuid='{FF2F74A5-0D32-4861-8AA7-0656F7992CC7}' />
     </worksheet>
-    <worksheet name='Top 3 Podium'>
+    <worksheet name='Top 3 Team Podium'>
       <layout-options>
         <title>
           <formatted-text>
@@ -1835,6 +2297,7 @@
           </formatted-text>
         </title>
       </layout-options>
+      <repository-location derived-from='https://vizhub/workbooks/Formula1_17366288863460/Top3TeamPodium?rev=' id='110763021' path='/workbooks/Formula1_17366288863460' revision='' />
       <table>
         <view>
           <datasources>
@@ -1868,7 +2331,7 @@
             <column caption='Year' datatype='string' datatype-customized='true' name='[year]' role='dimension' type='nominal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.1t8lzp419z68r517wiswl1iiv5e7].[Tooltip (Race Name)]'>
-            <groupfilter function='level-members' level='[race_name]' user:ui-action-filter='[Action - Top 3 Podium]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+            <groupfilter function='level-members' level='[race_name]' user:ui-action-filter='[Action - Top 3 Team Podium]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
           <filter class='quantitative' column='[federated.1t8lzp419z68r517wiswl1iiv5e7].[usr:Calculation_563512938254458880:qk:1]' included-values='in-range'>
             <min>1</min>
@@ -1878,9 +2341,9 @@
             <shelf-sort-v2 dimension-to-sort='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:name:nk]' direction='DESC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.1t8lzp419z68r517wiswl1iiv5e7].[sum:points:qk]' shelf='rows' />
           </shelf-sorts>
           <slices>
+            <column>[federated.1t8lzp419z68r517wiswl1iiv5e7].[usr:Calculation_563512938254458880:qk:1]</column>
             <column>[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:year:nk]</column>
             <column>[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:race_name:nk]</column>
-            <column>[federated.1t8lzp419z68r517wiswl1iiv5e7].[usr:Calculation_563512938254458880:qk:1]</column>
             <column>[federated.1t8lzp419z68r517wiswl1iiv5e7].[Tooltip (Race Name)]</column>
           </slices>
           <aggregation value='true' />
@@ -1895,13 +2358,29 @@
             <format attr='cell' value='20' />
             <format attr='cell-q' value='100' />
           </style-rule>
+          <style-rule element='header'>
+            <format attr='border-width' data-class='subtotal' value='0' />
+            <format attr='border-style' data-class='subtotal' value='none' />
+          </style-rule>
           <style-rule element='label'>
             <format attr='font-family' field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:name:nk]' value='Tableau Bold' />
             <format attr='font-family' field='[federated.1t8lzp419z68r517wiswl1iiv5e7].[sum:points:qk]' value='Tableau Bold' />
           </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-width' data-class='subtotal' value='0' />
+            <format attr='border-style' data-class='subtotal' value='none' />
+          </style-rule>
           <style-rule element='worksheet'>
             <format attr='display-field-labels' scope='cols' value='false' />
             <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
           </style-rule>
         </style>
         <panes>
@@ -1929,10 +2408,14 @@
               </style-rule>
               <style-rule element='mark'>
                 <format attr='size' value='1.5712155103683472' />
-                <format attr='has-stroke' value='false' />
                 <format attr='mark-labels-cull' value='true' />
                 <format attr='mark-labels-mode' value='all' />
                 <format attr='mark-labels-show' value='false' />
+                <format attr='has-stroke' value='false' />
+              </style-rule>
+              <style-rule element='trendline'>
+                <format attr='stroke-size' value='0' />
+                <format attr='line-visibility' value='off' />
               </style-rule>
             </style>
           </pane>
@@ -1944,14 +2427,15 @@
     </worksheet>
   </worksheets>
   <dashboards>
-    <dashboard enable-sort-zone-taborder='true' name='All Time Team Results'>
+    <dashboard enable-sort-zone-taborder='true' name='F1 Driver and Team Dashboard'>
       <layout-options>
         <title>
           <formatted-text>
-            <run>Formula 1 Driver and Team Dashboard</run>
+            <run fontalignment='1'>Formula 1 Driver and Team Dashboard</run>
           </formatted-text>
         </title>
       </layout-options>
+      <repository-location derived-from='https://vizhub/workbooks/Formula1_17366288863460/F1DriverandTeamDashboard?rev=' id='110763026' path='/workbooks/Formula1_17366288863460' revision='' />
       <style />
       <size sizing-mode='automatic' />
       <datasources>
@@ -1965,8 +2449,8 @@
       </datasource-dependencies>
       <zones>
         <zone h='100000' id='2' type-v2='layout-basic' w='100000' x='0' y='0'>
-          <zone h='98212' id='12' param='vert' type-v2='layout-flow' w='99318' x='341' y='894'>
-            <zone h='4693' id='13' type-v2='title' w='99318' x='341' y='894'>
+          <zone h='97796' id='12' param='vert' type-v2='layout-flow' w='98770' x='615' y='1102'>
+            <zone h='5785' id='13' type-v2='title' w='98770' x='615' y='1102'>
               <zone-style>
                 <format attr='border-color' value='#000000' />
                 <format attr='border-style' value='none' />
@@ -1974,9 +2458,9 @@
                 <format attr='margin' value='4' />
               </zone-style>
             </zone>
-            <zone h='93519' id='5' param='horz' type-v2='layout-flow' w='99318' x='341' y='5587'>
-              <zone h='93519' id='3' type-v2='layout-basic' w='92507' x='341' y='5587'>
-                <zone h='46759' id='1' name='Race Map' show-title='false' w='92507' x='341' y='5587'>
+            <zone h='92011' id='5' param='horz' type-v2='layout-flow' w='98770' x='615' y='6887'>
+              <zone h='92011' id='3' type-v2='layout-basic' w='86472' x='615' y='6887'>
+                <zone h='46001' id='1' name='Race Map' show-title='false' w='86472' x='615' y='6887'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -1984,7 +2468,15 @@
                     <format attr='margin' value='4' />
                   </zone-style>
                 </zone>
-                <zone h='46760' id='8' name='Constructor Points' w='92507' x='341' y='52346'>
+                <zone h='46010' id='8' name='Constructor Points' w='37687' x='615' y='52888'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone h='46010' id='18' name='Driver Points' w='48785' x='38302' y='52888'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -1993,8 +2485,8 @@
                   </zone-style>
                 </zone>
               </zone>
-              <zone fixed-size='160' h='93519' id='4' is-fixed='true' param='vert' type-v2='layout-flow' w='6811' x='92848' y='5587'>
-                <zone h='5810' id='6' mode='dropdown' name='Race Map' param='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:year:nk]' type-v2='filter' w='6811' x='92848' y='5587'>
+              <zone fixed-size='160' h='92011' id='4' is-fixed='true' param='vert' type-v2='layout-flow' w='12298' x='87087' y='6887'>
+                <zone h='7163' id='6' mode='dropdown' name='Race Map' param='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:year:nk]' type-v2='filter' w='12298' x='87087' y='6887'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2002,7 +2494,7 @@
                     <format attr='margin' value='4' />
                   </zone-style>
                 </zone>
-                <zone h='5810' id='7' mode='dropdown' name='Race Map' param='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:race_name:nk]' type-v2='filter' values='relevant' w='6811' x='92848' y='11397'>
+                <zone h='7163' id='7' mode='dropdown' name='Race Map' param='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:race_name:nk]' type-v2='filter' values='relevant' w='12298' x='87087' y='14050'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2020,14 +2512,22 @@
             <format attr='margin' value='8' />
           </zone-style>
         </zone>
+        <zone h='15928' id='23' is-centered='0' is-scaled='1' param='/var/folders/hd/6rk51wgd43d0gt928xvfbcr80000gn/T/tableau-temp/410327234/Image/F1_logo.svg.png' type-v2='bitmap' w='11622' x='1107' y='7173' />
       </zones>
       <devicelayouts>
         <devicelayout auto-generated='true' name='Phone'>
-          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <layout-options>
+            <title>
+              <formatted-text>
+                <run fontalignment='1'>Formula 1 Driver and Team Dashboard</run>
+              </formatted-text>
+            </title>
+          </layout-options>
+          <size maxheight='1200' minheight='1200' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='10' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='97802' id='9' param='vert' type-v2='layout-flow' w='98770' x='615' y='1099'>
-                <zone h='7143' id='6' mode='dropdown' name='Race Map' param='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:year:nk]' type-v2='filter' w='12298' x='87087' y='1099'>
+            <zone h='100000' id='37' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98312' id='36' param='vert' type-v2='layout-flow' w='99318' x='341' y='844'>
+                <zone h='4430' id='13' type-v2='title' w='99318' x='341' y='844'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2036,7 +2536,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='7143' id='7' mode='dropdown' name='Race Map' param='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:race_name:nk]' type-v2='filter' values='relevant' w='12298' x='87087' y='8242'>
+                <zone h='5485' id='6' mode='dropdown' name='Race Map' param='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:year:nk]' type-v2='filter' w='6811' x='92848' y='5274'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2045,7 +2545,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='280' h='48901' id='1' is-fixed='true' name='Race Map' show-title='false' w='86472' x='615' y='1099'>
+                <zone h='5485' id='7' mode='dropdown' name='Race Map' param='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:race_name:nk]' type-v2='filter' values='relevant' w='6811' x='92848' y='10759'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2054,7 +2554,34 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='280' h='48901' id='8' is-fixed='true' name='Constructor Points' w='86472' x='615' y='50000'>
+                <zone fixed-size='280' h='46938' id='1' is-fixed='true' name='Race Map' show-title='false' w='92507' x='341' y='5274'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='128' h='15928' id='23' is-centered='0' is-fixed='true' is-scaled='1' param='/var/folders/hd/6rk51wgd43d0gt928xvfbcr80000gn/T/tableau-temp/410327234/Image/F1_logo.svg.png' type-v2='bitmap' w='11622' x='1107' y='7173'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='46944' id='8' is-fixed='true' name='Constructor Points' w='40321' x='341' y='52212'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='46944' id='18' is-fixed='true' name='Driver Points' w='52186' x='40662' y='52212'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2076,9 +2603,93 @@
       </devicelayouts>
       <simple-id uuid='{E6846873-CD12-4879-B619-4B9D6C8B8F72}' />
     </dashboard>
+    <dashboard name='Story 1' type='storyboard'>
+      <style />
+      <size maxheight='964' maxwidth='1016' minheight='964' minwidth='1016' />
+      <zones>
+        <zone h='100000' id='2' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98340' id='1' param='vert' removable='false' type-v2='layout-flow' w='98426' x='787' y='830'>
+            <zone h='3423' id='3' type-v2='title' w='98426' x='787' y='830' />
+            <zone h='10477' id='4' is-fixed='true' paired-zone-id='5' removable='false' type-v2='flipboard-nav' w='98426' x='787' y='4253' />
+            <zone h='84440' id='5' paired-zone-id='4' removable='false' type-v2='flipboard' w='98426' x='787' y='14730'>
+              <flipboard active-id='1' nav-type='caption' show-nav-arrows='true'>
+                <story-points>
+                  <story-point captured-sheet='' id='1' />
+                </story-points>
+              </flipboard>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <simple-id uuid='{F5EA828E-B336-4542-B437-6842B3F58F18}' />
+    </dashboard>
   </dashboards>
   <windows source-height='30'>
     <window class='worksheet' name='Race Map'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='dropdown' param='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:race_name:nk]' type='filter' values='relevant' />
+            <card mode='dropdown' param='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:year:nk]' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <floating-toolbar-visibility value='1' />
+        <geo-search-visibility value='1' />
+        <default-map-tool-selection tool='2' />
+        <layer-control toolbar-button-enabled='false' />
+      </viewpoint>
+      <simple-id uuid='{CD7FCD06-EADE-4822-99CC-19251A9A592E}' />
+    </window>
+    <window class='worksheet' name='Top 3 Team Podium'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{97CE6822-02F8-4E16-8987-83CD60E249D7}' />
+    </window>
+    <window class='worksheet' name='Top 3 Driver Podium'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -2105,42 +2716,7 @@
           </strip>
         </edge>
       </cards>
-      <viewpoint>
-        <floating-toolbar-visibility value='1' />
-        <geo-search-visibility value='1' />
-        <default-map-tool-selection tool='2' />
-        <layer-control toolbar-button-enabled='false' />
-      </viewpoint>
-      <simple-id uuid='{CD7FCD06-EADE-4822-99CC-19251A9A592E}' />
-    </window>
-    <window class='worksheet' name='Top 3 Podium'>
-      <cards>
-        <edge name='left'>
-          <strip size='160'>
-            <card type='pages' />
-            <card type='filters' />
-            <card type='marks' />
-          </strip>
-        </edge>
-        <edge name='top'>
-          <strip size='2147483647'>
-            <card type='columns' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='rows' />
-          </strip>
-          <strip size='31'>
-            <card type='title' />
-          </strip>
-        </edge>
-        <edge name='right'>
-          <strip size='160'>
-            <card mode='dropdown' param='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:year:nk]' type='filter' />
-            <card mode='dropdown' param='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:race_name:nk]' show-all='false' show-filter-state='false' type='filter' values='relevant' />
-          </strip>
-        </edge>
-      </cards>
-      <simple-id uuid='{97CE6822-02F8-4E16-8987-83CD60E249D7}' />
+      <simple-id uuid='{08EF8B0A-E240-4D46-A959-391B1D823500}' />
     </window>
     <window class='worksheet' name='Constructor Points'>
       <cards>
@@ -2171,29 +2747,6 @@
       </cards>
       <simple-id uuid='{E503D556-5F43-4253-A284-2E19BD329E6F}' />
     </window>
-    <window class='worksheet' maximized='true' name='Top 3 Drivers'>
-      <cards>
-        <edge name='left'>
-          <strip size='160'>
-            <card type='pages' />
-            <card type='filters' />
-            <card type='marks' />
-          </strip>
-        </edge>
-        <edge name='top'>
-          <strip size='2147483647'>
-            <card type='columns' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='rows' />
-          </strip>
-          <strip size='31'>
-            <card type='title' />
-          </strip>
-        </edge>
-      </cards>
-      <simple-id uuid='{844DD7E9-4FC1-41CC-9D9E-EDB01E9A93DC}' />
-    </window>
     <window class='worksheet' name='Driver Points'>
       <cards>
         <edge name='left'>
@@ -2212,6 +2765,12 @@
           </strip>
           <strip size='31'>
             <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='dropdown' param='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:year:nk]' type='filter' />
+            <card mode='dropdown' param='[federated.1t8lzp419z68r517wiswl1iiv5e7].[none:race_name:nk]' type='filter' values='relevant' />
           </strip>
         </edge>
       </cards>
@@ -2240,9 +2799,12 @@
       </cards>
       <simple-id uuid='{B6060C5B-A66A-4734-9ED1-CF465ACAA71D}' />
     </window>
-    <window class='dashboard' name='All Time Team Results'>
+    <window class='dashboard' name='F1 Driver and Team Dashboard'>
       <viewpoints>
         <viewpoint name='Constructor Points'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Driver Points'>
           <zoom type='entire-view' />
         </viewpoint>
         <viewpoint name='Race Map'>
@@ -2251,8 +2813,13 @@
           <default-map-tool-selection tool='1' />
         </viewpoint>
       </viewpoints>
-      <active id='13' />
+      <active id='1' />
       <simple-id uuid='{779C3DC0-6635-4E5F-9B2C-BEC2DF879503}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Story 1'>
+      <viewpoints />
+      <active id='-1' />
+      <simple-id uuid='{59C9AB42-AB7E-4722-B8DF-4A3440F3DAED}' />
     </window>
   </windows>
   <external>
